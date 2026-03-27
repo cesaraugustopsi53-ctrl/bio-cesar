@@ -6,415 +6,318 @@
   <title>César Augusto — Psicanalista</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --verde:        #1B3A2D;
-      --verde-escuro: #122a20;
-      --verde-claro:  #2a5040;
-      --dourado:      #C9A84C;
-      --dourado-claro:#e8c96a;
-      --bege:         #F5F0E8;
-      --branco:       #ffffff;
+      --bg:    #060e08;
+      --bg2:   #0b1810;
+      --bg3:   #0f2018;
+      --gold:  #C9A84C;
+      --gold2: #e8c96a;
+      --text:  #EDE8DE;
+      --dim:   rgba(237,232,222,.52);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--verde);
-      color: var(--branco);
-      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      min-height: 100dvh;
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Cormorant Garamond', serif;
-    }
-
-    /* ── PROFILE — mesmo padrão do hero do RM ── */
-    .profile {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 80px 24px 60px;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-
-    /* Brilho dourado — idêntico ao hero::before do RM */
-    .profile::before {
+    /* grain */
+    body::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.08) 0%, transparent 70%);
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
       pointer-events: none;
+      z-index: 100;
     }
 
-    .profile-inner {
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
       position: relative;
       z-index: 1;
-      width: 100%;
-      max-width: 440px;
-      margin: 0 auto;
+    }
+
+    /* ── PROFILE ── */
+    .profile {
+      padding: 52px 24px 40px;
       display: flex;
       flex-direction: column;
+      gap: 20px;
+    }
+
+    .profile-top {
+      display: flex;
       align-items: center;
-      gap: 0;
+      gap: 20px;
     }
 
-    /* Foto — mesmo tratamento da hero-foto do RM */
-    .profile-foto {
-      width: 100%;
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-      margin-bottom: 32px;
-      max-width: 280px;
-    }
-
-    .profile-foto img {
-      width: 100%;
-      display: block;
-      filter: grayscale(20%);
-      aspect-ratio: 3/4;
+    .profile-photo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
       object-fit: cover;
       object-position: 50% 15%;
+      filter: grayscale(15%) brightness(.88) contrast(1.06);
+      border: 1px solid rgba(201,168,76,.35);
+      flex-shrink: 0;
     }
 
-    /* Caption sobre a foto — exato padrão do hero-foto-caption */
-    .profile-foto-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0; right: 0;
-      padding: 20px;
-      background: linear-gradient(transparent, rgba(27,58,45,0.95));
-    }
+    .profile-text {}
 
-    .profile-foto-caption span {
-      display: block;
-      font-size: 13px;
-      color: rgba(255,255,255,0.6);
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    .profile-foto-caption strong {
-      display: block;
-      font-size: 15px;
-      color: var(--branco);
+    .profile-handle {
+      font-size: 10px;
       font-weight: 500;
-      margin-top: 2px;
-      font-family: 'DM Sans', sans-serif;
-    }
-
-    /* Label — idêntico ao padrão .label do RM */
-    .label {
-      font-size: 11px;
-      letter-spacing: 0.2em;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--dourado);
-      font-weight: 500;
-      display: block;
-      margin-bottom: 20px;
-      font-family: 'DM Sans', sans-serif;
+      color: var(--gold);
+      margin-bottom: 2px;
     }
 
-    .profile-nome {
-      font-size: clamp(38px, 9vw, 56px);
-      font-weight: 500;
-      line-height: 1.05;
-      color: var(--branco);
-      margin-bottom: 8px;
-    }
-
-    .profile-nome em {
-      font-style: italic;
-      color: var(--dourado);
+    .profile-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      line-height: .92;
+      color: var(--text);
+      letter-spacing: .03em;
     }
 
     .profile-bio {
-      font-size: 16px;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.7;
-      font-weight: 300;
-      margin-bottom: 0;
-      max-width: 320px;
+      font-size: 13.5px;
+      line-height: 1.72;
+      color: var(--dim);
+      border-left: 2px solid rgba(201,168,76,.3);
+      padding-left: 14px;
     }
 
     .profile-bio strong {
-      color: rgba(255,255,255,0.9);
+      color: var(--text);
       font-weight: 500;
     }
 
-    /* Linha dourada — idêntica ao .linha-dourada do RM */
-    .linha-dourada {
-      width: 40px;
-      height: 2px;
-      background: var(--dourado);
-      margin: 32px auto;
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201,168,76,.25), transparent);
+      margin: 0 24px;
     }
 
-    /* ── CARDS — seção verde escuro, como .secao-consequencias ── */
+    /* ── CARDS ── */
     .cards {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 2px;
+      padding: 2px 0;
     }
 
     .card {
-      background: var(--verde-escuro);
-      padding: 0;
-      position: relative;
+      display: flex;
+      align-items: stretch;
+      background: var(--bg2);
+      min-height: 160px;
+      transition: background .2s;
     }
 
-    .card + .card {
-      border-top: 1px solid rgba(201,168,76,0.12);
+    .card:not(.card--disabled):hover {
+      background: var(--bg3);
     }
 
-    /* Foto do card — mesmo padrão hero-foto */
-    .card-foto {
-      width: 100%;
-      position: relative;
+    /* Imagem — coluna esquerda */
+    .card-img {
+      width: 140px;
+      flex-shrink: 0;
       overflow: hidden;
+      position: relative;
     }
 
-    .card-foto img {
+    .card-img img {
       width: 100%;
-      display: block;
-      filter: grayscale(20%);
-      aspect-ratio: 4/5;
+      height: 100%;
       object-fit: cover;
+      display: block;
+      filter: grayscale(20%) brightness(.75) contrast(1.08);
       transition: transform .5s ease;
     }
 
-    .card:hover .card-foto img {
-      transform: scale(1.03);
+    .card:not(.card--disabled):hover .card-img img {
+      transform: scale(1.05);
     }
 
-    /* Caption sobre foto — exato hero-foto-caption */
-    .card-foto-caption {
+    /* Gradiente da imagem para o card */
+    .card-img::after {
+      content: '';
       position: absolute;
-      bottom: 0;
-      left: 0; right: 0;
-      padding: 32px 24px 20px;
-      background: linear-gradient(transparent, rgba(18,42,32,0.97));
+      inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--bg2) 100%);
+      pointer-events: none;
     }
 
-    .card-foto-caption .label {
-      margin-bottom: 8px;
+    /* Conteúdo — coluna direita */
+    .card-content {
+      flex: 1;
+      padding: 20px 20px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
     }
 
-    .card-foto-caption h2 {
-      font-size: clamp(28px, 6vw, 38px);
-      color: var(--branco);
-      font-weight: 500;
-      line-height: 1.15;
+    .card-label {
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
     }
 
-    .card-foto-caption h2 em {
-      font-style: italic;
-      color: var(--dourado);
+    .card-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(237,232,222,.4);
+      margin-top: -4px;
     }
 
-    /* Corpo do card — mesmo padrão das seções escuras */
-    .card-body {
-      padding: 24px 24px 28px;
+    /* Frase de promessa — texto principal grande */
+    .card-promise {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+      letter-spacing: -.01em;
+      flex: 1;
     }
 
-    .card-body p {
-      font-size: 15px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.75;
-      margin-bottom: 24px;
-      font-weight: 300;
+    .card--disabled .card-promise {
+      color: rgba(237,232,222,.3);
     }
 
-    /* Botão — idêntico ao .btn-primary do RM */
-    .btn-primary {
+    /* Botão */
+    .btn {
       display: block;
-      width: 100%;
-      background: var(--dourado);
-      color: var(--verde);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      padding: 18px 36px;
+      padding: 11px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-align: center;
       text-decoration: none;
       border-radius: 2px;
-      transition: all 0.2s ease;
-      text-align: center;
-      border: none;
-      cursor: pointer;
+      transition: background .15s;
     }
 
-    .btn-primary:hover {
-      background: var(--dourado-claro);
-      transform: translateY(-1px);
+    .btn-gold {
+      background: var(--gold);
+      color: #060e08;
     }
 
-    /* Disabled */
-    .btn-disabled {
-      display: block;
-      width: 100%;
+    .btn-gold:hover { background: var(--gold2); }
+
+    .btn-off {
       background: transparent;
-      color: rgba(255,255,255,0.25);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      padding: 14px 20px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 2px;
+      color: rgba(237,232,222,.2);
+      border: 1px solid rgba(237,232,222,.1);
       cursor: default;
+      font-size: 10px;
     }
 
-    /* Card desabilitado */
-    .card--disabled .card-foto img {
-      filter: grayscale(60%) brightness(.6);
-    }
-
-    .card--disabled h2 { color: rgba(255,255,255,0.4); }
-    .card--disabled .label { color: rgba(201,168,76,0.4); }
-
-    /* Quote lateral — padrão autoridade-quote do RM */
-    .card-quote {
-      border-left: 3px solid var(--dourado);
-      padding: 12px 16px;
-      margin-bottom: 20px;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .card-quote p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      font-style: italic;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.55;
-      margin: 0 !important;
+    /* disabled */
+    .card--disabled { opacity: .55; }
+    .card--disabled .card-img img {
+      filter: grayscale(60%) brightness(.55) contrast(1.02);
     }
 
     /* ── FOOTER ── */
     footer {
-      padding: 40px 24px 48px;
+      padding: 32px 24px;
       text-align: center;
-      background: var(--verde-escuro);
-      border-top: 1px solid rgba(201,168,76,0.12);
     }
 
     footer p {
-      font-size: 11px;
-      letter-spacing: 0.18em;
+      font-size: 10px;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
-      font-family: 'DM Sans', sans-serif;
+      color: rgba(237,232,222,.15);
     }
   </style>
 </head>
 <body>
+<div class="page">
 
-  <!-- PROFILE — hero do RM -->
-  <section class="profile">
-    <div class="profile-inner">
-
-      <span class="label">@cesaraugustoo_</span>
-
-      <div class="profile-foto">
-        <img src="img/autor.jpeg" alt="César Augusto">
-        <div class="profile-foto-caption">
-          <span>Psicanalista · Cristão · Casado</span>
-          <strong>César Augusto</strong>
-        </div>
+  <!-- PROFILE -->
+  <header class="profile">
+    <div class="profile-top">
+      <img src="img/autor.jpeg" alt="César Augusto" class="profile-photo">
+      <div class="profile-text">
+        <p class="profile-handle">@cesaraugustoo_</p>
+        <h1 class="profile-name">César<br>Augusto</h1>
       </div>
-
-      <h1 class="profile-nome">César <em>Augusto</em></h1>
-
-      <div class="linha-dourada"></div>
-
-      <p class="profile-bio">
-        Psicanalista cristão, casado. Ajudo homens que traíram a entender o que os levou a isso
-        e a reconstruir o que ainda pode ser salvo.
-        <br><br>
-        <strong>Mais de 200 homens nesse processo.</strong>
-      </p>
-
     </div>
-  </section>
+    <p class="profile-bio">
+      Psicanalista cristão, casado. Ajudo homens que traíram a entender o que os levou a isso e a reconstruir o que ainda pode ser salvo. <strong>Mais de 200 homens nesse processo.</strong>
+    </p>
+  </header>
+
+  <div class="divider"></div>
 
   <!-- CARDS -->
   <section class="cards">
 
     <!-- TERAPIA -->
     <article class="card card--disabled">
-      <div class="card-foto">
-        <img
-          src="img/IMG_3935.JPEG"
-          alt="Terapia com César"
-          style="object-position:50% 18%;">
-        <div class="card-foto-caption">
-          <span class="label">Atendimento individual</span>
-          <h2>Terapia com César</h2>
-        </div>
+      <div class="card-img">
+        <img src="img/IMG_3935.JPEG" alt="Terapia" style="object-position:50% 18%;">
       </div>
-      <div class="card-body">
-        <p>Atendimento online, agenda fechada. Se você traiu e quer entender o que está em jogo antes que seja tarde demais.</p>
-        <span class="btn-disabled">Agenda fechada — sem vagas</span>
+      <div class="card-content">
+        <p class="card-label">Atendimento individual</p>
+        <p class="card-title">Terapia com César</p>
+        <p class="card-promise">Entender o que te levou a trair é o primeiro passo real.</p>
+        <span class="btn btn-off">Agenda fechada</span>
       </div>
     </article>
 
     <!-- RECONSTRUÇÃO MASCULINA -->
     <article class="card">
-      <div class="card-foto">
-        <img
-          src="img/hero-casal.jpeg"
-          alt="Reconstrução Masculina"
-          style="object-position:50% 22%;">
-        <div class="card-foto-caption">
-          <span class="label">Curso online · + 200 homens</span>
-          <h2>Reconstrução <em>Masculina</em></h2>
-        </div>
+      <div class="card-img">
+        <img src="img/hero-casal.jpeg" alt="Reconstrução Masculina" style="object-position:50% 22%;">
       </div>
-      <div class="card-body">
-        <div class="card-quote">
-          <p>"Você traiu. Foi descoberto. E agora não sabe se o que sente é culpa, medo de perder ela ou vontade real de mudar."</p>
-        </div>
-        <p>Este curso foi feito para esse momento exato.</p>
-        <a href="https://reconstrucao.cesaraugustopsi.com.br" class="btn-primary">Quero entender o que aconteceu comigo</a>
+      <div class="card-content">
+        <p class="card-label">Curso online · +200 homens</p>
+        <p class="card-title">Reconstrução Masculina</p>
+        <p class="card-promise">Você traiu. Ainda existe um caminho de volta.</p>
+        <a href="https://reconstrucao.cesaraugustopsi.com.br" class="btn btn-gold">Quero me reconstruir</a>
       </div>
     </article>
 
     <!-- SABER AMAR -->
     <article class="card">
-      <div class="card-foto">
-        <img
-          src="img/saberamar-dueto.jpg"
-          alt="Saber Amar"
-          style="object-position:50% 0%;">
-        <div class="card-foto-caption">
-          <span class="label">Curso online · com Thaís Ayumi</span>
-          <h2>Saber <em>Amar</em></h2>
-        </div>
+      <div class="card-img">
+        <img src="img/saberamar-dueto.jpg" alt="Saber Amar" style="object-position:50% 0%;">
       </div>
-      <div class="card-body">
-        <div class="card-quote">
-          <p>"Você foi traída e não sabe mais o que é real: o amor que sente, a raiva que carrega ou o medo de ficar."</p>
-        </div>
-        <p>O Saber Amar foi criado para a mulher que quer se entender antes de decidir qualquer coisa.</p>
-        <a href="https://saberamar.cesaraugustopsi.com.br" class="btn-primary">Quero me entender de verdade</a>
+      <div class="card-content">
+        <p class="card-label">Curso online · com Thaís Ayumi</p>
+        <p class="card-title">Saber Amar</p>
+        <p class="card-promise">Você foi traída. É hora de se reconquistar.</p>
+        <a href="https://saberamar.cesaraugustopsi.com.br" class="btn btn-gold">Quero me entender</a>
       </div>
     </article>
 
   </section>
 
-  <footer>
-    <p>cesaraugustopsi.com.br</p>
-  </footer>
+  <footer><p>cesaraugustopsi.com.br</p></footer>
 
+</div>
 </body>
 </html>
