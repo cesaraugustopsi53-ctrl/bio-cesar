@@ -6,7 +6,7 @@
   <title>César Augusto — Psicanalista</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,28 +17,55 @@
       --gold:  #C9A84C;
       --gold2: #e8c96a;
       --text:  #EDE8DE;
-      --dim:   rgba(237,232,222,.52);
+      --dim:   rgba(237,232,222,.65);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
+      /* profundidade — radial do topo */
+      background:
+        radial-gradient(ellipse 160% 55% at 50% 0%, #0f2018 0%, #060e08 65%),
+        #060e08;
       color: var(--text);
       font-family: 'Inter', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       min-height: 100dvh;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* grain */
+    /* grain — soft-light funciona no escuro */
     body::before {
       content: '';
       position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
       pointer-events: none;
       z-index: 100;
+    }
+
+    /* brilho dourado topo + rodapé */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: linear-gradient(180deg,
+        rgba(201,168,76,.04) 0%,
+        transparent 25%,
+        transparent 75%,
+        rgba(201,168,76,.02) 100%);
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    /* ── ANIMAÇÕES ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes expandLine {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
     }
 
     .page {
@@ -50,10 +77,11 @@
 
     /* ── PROFILE ── */
     .profile {
-      padding: 52px 24px 40px;
+      padding: 56px 24px 52px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
+      animation: fadeUp .6s ease both;
     }
 
     .profile-top {
@@ -63,78 +91,92 @@
     }
 
     .profile-photo {
-      width: 72px;
-      height: 72px;
+      width: 68px;
+      height: 68px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: 50% 15%;
-      filter: grayscale(15%) brightness(.88) contrast(1.06);
-      border: 1px solid rgba(201,168,76,.35);
+      object-position: 50% 12%;
+      filter: grayscale(15%) brightness(.87) contrast(1.07);
+      border: 1px solid rgba(201,168,76,.4);
       flex-shrink: 0;
     }
 
-    .profile-text {}
-
     .profile-handle {
       font-size: 10px;
-      font-weight: 500;
-      letter-spacing: .2em;
+      font-weight: 600;
+      letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .profile-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 42px;
-      line-height: .92;
+      font-size: 48px;
+      line-height: .88;
       color: var(--text);
-      letter-spacing: .03em;
+      letter-spacing: .04em;
+      text-shadow: 0 1px 24px rgba(15,32,24,.8);
     }
 
     .profile-bio {
-      font-size: 13.5px;
-      line-height: 1.72;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.68;
       color: var(--dim);
-      border-left: 2px solid rgba(201,168,76,.3);
+      border-left: 2px solid rgba(201,168,76,.28);
       padding-left: 14px;
     }
 
     .profile-bio strong {
       color: var(--text);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     /* ── DIVIDER ── */
     .divider {
       height: 1px;
-      background: linear-gradient(90deg, rgba(201,168,76,.25), transparent);
-      margin: 0 24px;
+      background: linear-gradient(90deg, rgba(201,168,76,.3), transparent);
+      margin: 0 24px 28px;
+      transform-origin: left;
+      animation: expandLine .8s .08s ease both;
     }
 
     /* ── CARDS ── */
     .cards {
       display: flex;
       flex-direction: column;
-      gap: 2px;
-      padding: 2px 0;
+      gap: 16px;
+      padding: 0 0 32px;
     }
 
     .card {
       display: flex;
       align-items: stretch;
       background: var(--bg2);
-      min-height: 160px;
-      transition: background .2s;
+      min-height: 188px;
+      border: 1px solid transparent;
+      transition:
+        border-color .25s ease,
+        background .25s ease,
+        transform .2s ease,
+        box-shadow .25s ease;
     }
+
+    .card:nth-child(1) { animation: fadeUp .6s .10s ease both; }
+    .card:nth-child(2) { animation: fadeUp .6s .20s ease both; }
+    .card:nth-child(3) { animation: fadeUp .6s .30s ease both; }
 
     .card:not(.card--disabled):hover {
+      border-color: rgba(201,168,76,.18);
       background: var(--bg3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.35);
     }
 
-    /* Imagem — coluna esquerda */
+    /* ── IMAGEM ── */
     .card-img {
-      width: 140px;
+      width: 160px;
       flex-shrink: 0;
       overflow: hidden;
       position: relative;
@@ -146,26 +188,33 @@
       object-fit: cover;
       display: block;
       filter: grayscale(20%) brightness(.75) contrast(1.08);
-      transition: transform .5s ease;
+      transition:
+        transform .6s cubic-bezier(.25,.46,.45,.94),
+        filter .4s ease;
     }
 
     .card:not(.card--disabled):hover .card-img img {
-      transform: scale(1.05);
+      transform: scale(1.06);
+      filter: grayscale(10%) brightness(.82) contrast(1.1);
     }
 
-    /* Gradiente da imagem para o card */
+    /* gradiente imagem → conteúdo */
     .card-img::after {
       content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, transparent 60%, var(--bg2) 100%);
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 55%, var(--bg2) 100%);
       pointer-events: none;
+      transition: background .25s ease;
     }
 
-    /* Conteúdo — coluna direita */
+    .card:not(.card--disabled):hover .card-img::after {
+      background: linear-gradient(to right, transparent 55%, var(--bg3) 100%);
+    }
+
+    /* ── CONTEÚDO ── */
     .card-content {
       flex: 1;
-      padding: 20px 20px 20px 16px;
+      padding: 22px 20px 22px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -173,49 +222,56 @@
     }
 
     .card-label {
-      font-size: 9.5px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: .2em;
+      letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--gold);
     }
 
-    .card-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 13px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(237,232,222,.4);
-      margin-top: -4px;
-    }
-
-    /* Frase de promessa — texto principal grande */
+    /* Frase de promessa — headline principal */
     .card-promise {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 600;
-      line-height: 1.35;
+      line-height: 1.28;
       color: var(--text);
-      letter-spacing: -.01em;
+      letter-spacing: -.02em;
       flex: 1;
     }
 
-    .card--disabled .card-promise {
-      color: rgba(237,232,222,.3);
+    .card-promise span {
+      display: block;
+      margin-top: 10px;
+      font-weight: 400;
+      color: var(--dim);
+      font-size: 17px;
+      letter-spacing: -.01em;
     }
 
-    /* Botão */
+    .card--disabled .card-promise {
+      color: rgba(237,232,222,.28);
+    }
+
+    .card--disabled .card-promise span {
+      color: rgba(237,232,222,.18);
+    }
+
+    /* ── BOTÕES ── */
     .btn {
       display: block;
-      padding: 11px 16px;
+      padding: 12px 16px;
       font-family: 'Inter', sans-serif;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 600;
-      letter-spacing: .1em;
+      letter-spacing: .12em;
       text-transform: uppercase;
       text-align: center;
       text-decoration: none;
       border-radius: 2px;
-      transition: background .15s;
+      transition:
+        background .15s ease,
+        box-shadow .2s ease,
+        transform .1s ease;
     }
 
     .btn-gold {
@@ -223,33 +279,43 @@
       color: #060e08;
     }
 
-    .btn-gold:hover { background: var(--gold2); }
+    .btn-gold:hover {
+      background: var(--gold2);
+      box-shadow: 0 4px 16px rgba(201,168,76,.3);
+      transform: translateY(-1px);
+    }
+
+    .btn-gold:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
 
     .btn-off {
       background: transparent;
-      color: rgba(237,232,222,.2);
-      border: 1px solid rgba(237,232,222,.1);
+      color: rgba(237,232,222,.18);
+      border: 1px solid rgba(237,232,222,.08);
       cursor: default;
-      font-size: 10px;
+      font-size: 10.5px;
     }
 
     /* disabled */
-    .card--disabled { opacity: .55; }
-    .card--disabled .card-img img {
-      filter: grayscale(60%) brightness(.55) contrast(1.02);
+    .card--disabled {
+      opacity: .5;
+      pointer-events: none;
     }
 
     /* ── FOOTER ── */
     footer {
-      padding: 32px 24px;
+      padding: 8px 24px 48px;
       text-align: center;
+      animation: fadeUp .6s .4s ease both;
     }
 
     footer p {
       font-size: 10px;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(237,232,222,.15);
+      color: rgba(237,232,222,.14);
     }
   </style>
 </head>
@@ -260,13 +326,14 @@
   <header class="profile">
     <div class="profile-top">
       <img src="img/autor.jpeg" alt="César Augusto" class="profile-photo">
-      <div class="profile-text">
+      <div>
         <p class="profile-handle">@cesaraugustoo_</p>
         <h1 class="profile-name">César<br>Augusto</h1>
       </div>
     </div>
     <p class="profile-bio">
-      Psicanalista cristão, casado. Ajudo homens que traíram a entender o que os levou a isso e a reconstruir o que ainda pode ser salvo. <strong>Mais de 200 homens nesse processo.</strong>
+      Psicanalista. Ajudo casamentos destruídos pela traição a terem uma segunda chance.<br>
+      <strong>Casado com Thaís Ayumi · mais de 200 homens atendidos.</strong>
     </p>
   </header>
 
@@ -282,9 +349,11 @@
       </div>
       <div class="card-content">
         <p class="card-label">Atendimento individual</p>
-        <p class="card-title">Terapia com César</p>
-        <p class="card-promise">Entender o que te levou a trair é o primeiro passo real.</p>
-        <span class="btn btn-off">Agenda fechada</span>
+        <p class="card-promise">
+          Cada caso recebe atenção total.
+          <span>Por isso a agenda fecha rápido.</span>
+        </p>
+        <span class="btn btn-off">Agenda fechada no momento</span>
       </div>
     </article>
 
@@ -294,23 +363,27 @@
         <img src="img/hero-casal.jpeg" alt="Reconstrução Masculina" style="object-position:50% 22%;">
       </div>
       <div class="card-content">
-        <p class="card-label">Curso online · +200 homens</p>
-        <p class="card-title">Reconstrução Masculina</p>
-        <p class="card-promise">Você traiu. Ainda existe um caminho de volta.</p>
-        <a href="https://reconstrucao.cesaraugustopsi.com.br" class="btn btn-gold">Quero me reconstruir</a>
+        <p class="card-label">Curso · +200 homens</p>
+        <p class="card-promise">
+          Você traiu. Tem volta.
+          <span>Mas não do jeito que você está tentando.</span>
+        </p>
+        <a href="https://reconstrucao.cesaraugustopsi.com.br" class="btn btn-gold">Quero reconstruir</a>
       </div>
     </article>
 
     <!-- SABER AMAR -->
     <article class="card">
       <div class="card-img">
-        <img src="img/saberamar-dueto.jpg" alt="Saber Amar" style="object-position:50% 0%;">
+        <img src="img/thais-retrato-2.jpg" alt="Saber Amar" style="object-position:50% 12%;">
       </div>
       <div class="card-content">
-        <p class="card-label">Curso online · com Thaís Ayumi</p>
-        <p class="card-title">Saber Amar</p>
-        <p class="card-promise">Você foi traída. É hora de se reconquistar.</p>
-        <a href="https://saberamar.cesaraugustopsi.com.br" class="btn btn-gold">Quero me entender</a>
+        <p class="card-label">Curso · com Thaís Ayumi</p>
+        <p class="card-promise">
+          Vença a dependência emocional.
+          <span>Recupere a sua vida após a traição.</span>
+        </p>
+        <a href="https://saberamar.cesaraugustopsi.com.br" class="btn btn-gold">Quero recuperar minha vida</a>
       </div>
     </article>
 
