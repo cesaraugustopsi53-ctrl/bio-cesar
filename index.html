@@ -6,19 +6,18 @@
   <title>César Augusto — Psicanalista</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:    #05100a;
-      --bg2:   #0c1e12;
-      --bg3:   #102416;
-      --green: #1B3A2D;
-      --gold:  #C9A84C;
-      --gold2: #D4B872;
-      --text:  #EDE8DE;
-      --dim:   rgba(237,232,222,.55);
+      --bg:   #060d07;
+      --bg2:  #0b1a0d;
+      --gold: #C9A84C;
+      --gold2:#D4B872;
+      --gold3:#b8922e;
+      --text: #EDE8DE;
+      --dim:  rgba(237,232,222,.56);
     }
 
     html { scroll-behavior: smooth; }
@@ -29,28 +28,42 @@
       font-family: 'Inter', sans-serif;
       font-weight: 300;
       min-height: 100dvh;
-      /* film grain */
-      position: relative;
+      isolation: isolate;
+      background-image:
+        radial-gradient(ellipse 140% 50% at 50% 0%,   #14301e 0%, transparent 70%),
+        radial-gradient(ellipse 80%  30% at 50% 100%, #0c2014 0%, transparent 70%),
+        radial-gradient(ellipse 100% 60% at 50% 50%,  transparent 50%, #040c05 100%);
     }
 
+    /* Film grain */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
       pointer-events: none;
-      z-index: 1000;
-      opacity: .45;
+      z-index: 100;
+    }
+
+    /* Vinheta */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 90% 90% at 50% 50%, transparent 55%, rgba(4,10,5,.65) 100%);
+      pointer-events: none;
+      z-index: 99;
     }
 
     .page {
       max-width: 480px;
       margin: 0 auto;
-      padding: 52px 20px 72px;
+      padding: 56px 20px 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 44px;
+      gap: 48px;
       position: relative;
       z-index: 1;
     }
@@ -60,67 +73,62 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
       text-align: center;
     }
 
     .profile-photo-wrap {
-      position: relative;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--gold2) 0%, var(--gold3) 40%, transparent 60%, var(--gold) 100%);
+      box-shadow: 0 0 28px rgba(201,168,76,.2);
     }
 
     .profile-photo {
-      width: 110px;
-      height: 110px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: 50% 12%;
+      object-position: 50% 22%;
       display: block;
-      filter: brightness(.9) contrast(1.05) saturate(.92);
-    }
-
-    .profile-photo-wrap::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      background: conic-gradient(var(--gold) 0deg, var(--gold2) 90deg, transparent 140deg, transparent 220deg, var(--gold) 280deg, var(--gold2) 360deg);
-      z-index: -1;
+      filter: brightness(.88) contrast(1.08) saturate(.82);
+      background: var(--bg);
     }
 
     .profile-handle {
-      font-size: 11.5px;
+      font-size: 10.5px;
       font-weight: 500;
-      letter-spacing: .14em;
+      letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--gold);
     }
 
     .profile-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 32px;
+      font-size: 38px;
       font-weight: 400;
-      letter-spacing: .03em;
-      line-height: 1.05;
+      letter-spacing: .025em;
+      line-height: 1.0;
       color: var(--text);
-      margin-top: -6px;
+      margin-top: -4px;
     }
 
     .profile-role {
-      font-size: 12px;
+      font-size: 10.5px;
       font-weight: 400;
-      letter-spacing: .1em;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(237,232,222,.4);
-      border-top: 1px solid rgba(201,168,76,.2);
-      padding-top: 12px;
+      color: rgba(237,232,222,.38);
+      padding-top: 10px;
+      border-top: 1px solid rgba(201,168,76,.18);
       width: 100%;
     }
 
     .profile-bio {
-      font-size: 14px;
-      line-height: 1.72;
+      font-size: 14.5px;
+      line-height: 1.74;
       color: var(--dim);
-      max-width: 300px;
+      max-width: 310px;
     }
 
     .profile-bio strong {
@@ -128,11 +136,18 @@
       font-weight: 500;
     }
 
+    /* ── DIVISOR ── */
+    .gold-rule {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, transparent, rgba(201,168,76,.5), transparent);
+    }
+
     /* ── CARDS ── */
     .cards {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       width: 100%;
     }
 
@@ -140,15 +155,27 @@
       border-radius: 10px;
       overflow: hidden;
       background: var(--bg2);
-      border: 1px solid rgba(201,168,76,.12);
-      position: relative;
+      border: 1px solid rgba(201,168,76,.1);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
 
-    /* Image block with overlay */
+    .card:not(.card--disabled):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.45);
+    }
+
+    .card--featured {
+      border-color: rgba(201,168,76,.28);
+      box-shadow: 0 6px 28px rgba(0,0,0,.35);
+    }
+
+    .card--disabled { opacity: .68; }
+
+    /* ── IMAGEM ── */
     .card-visual {
       position: relative;
       width: 100%;
-      aspect-ratio: 3/4;
+      aspect-ratio: 4/5;
       overflow: hidden;
     }
 
@@ -157,128 +184,134 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: brightness(.78) contrast(1.06) saturate(.8);
-      transform: scale(1.01); /* prevents white edge */
+      transform: scale(1.01);
+      transition: transform .4s ease;
     }
 
-    /* Cinematic letterbox bars */
-    .card-visual::before,
-    .card-visual::after {
+    .card:not(.card--disabled):hover .card-visual img {
+      transform: scale(1.04);
+    }
+
+    .card-visual::before {
       content: '';
       position: absolute;
-      left: 0; right: 0;
-      height: 60px;
+      top: 0; left: 0; right: 0;
+      height: 90px;
+      background: linear-gradient(to bottom, rgba(6,13,7,.85), transparent);
       z-index: 2;
       pointer-events: none;
     }
-    .card-visual::before { top: 0; background: linear-gradient(to bottom, rgba(5,16,10,.9), transparent); }
-    .card-visual::after  { bottom: 0; background: linear-gradient(to top, rgba(5,16,10,.95) 0%, rgba(5,16,10,.4) 60%, transparent 100%); }
 
-    /* Label on top of image */
+    .card-visual::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to top, var(--bg2) 0%, rgba(11,26,13,.7) 50%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
     .card-label {
       position: absolute;
       top: 14px;
       left: 16px;
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 600;
-      letter-spacing: .16em;
+      letter-spacing: .20em;
       text-transform: uppercase;
       color: var(--gold);
       z-index: 3;
     }
 
-    /* Headline overlaid at bottom of image */
     .card-headline {
       position: absolute;
       bottom: 0;
       left: 0; right: 0;
-      padding: 0 18px 20px;
+      padding: 0 18px 18px;
       z-index: 3;
     }
 
     .card-headline h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 400;
       line-height: 1.15;
       color: var(--text);
-      letter-spacing: .01em;
+      letter-spacing: .015em;
     }
 
-    /* Text + button below image */
+    .card-badge {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+
+    /* ── CARD BODY ── */
     .card-body {
-      padding: 16px 18px 20px;
+      padding: 14px 18px 20px;
     }
 
     .card-desc {
       font-size: 13.5px;
-      line-height: 1.65;
+      line-height: 1.68;
       color: var(--dim);
       margin-bottom: 16px;
     }
 
-    /* ── BUTTONS ── */
+    /* ── BOTOES ── */
     .btn {
       display: block;
       width: 100%;
-      padding: 13px 20px;
+      padding: 14px 20px;
       border-radius: 5px;
       font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: .06em;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .1em;
       text-align: center;
       text-decoration: none;
       text-transform: uppercase;
       cursor: pointer;
       border: none;
-      transition: opacity .18s, transform .18s;
+      transition: box-shadow .18s;
     }
-
-    .btn:active { transform: scale(.98); }
 
     .btn-gold {
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
-      color: #060e07;
-      font-weight: 600;
+      background: linear-gradient(160deg, var(--gold2) 0%, var(--gold) 50%, var(--gold3) 100%);
+      color: #04090a;
+      box-shadow:
+        0 4px 20px rgba(201,168,76,.3),
+        inset 0 1px 0 rgba(255,255,255,.14);
     }
 
-    .btn-gold:hover { opacity: .88; }
+    .btn-gold:hover {
+      box-shadow:
+        0 6px 28px rgba(201,168,76,.42),
+        inset 0 1px 0 rgba(255,255,255,.14);
+    }
 
-    .btn-outline {
+    .btn-disabled {
       background: transparent;
-      color: rgba(237,232,222,.3);
-      border: 1px solid rgba(237,232,222,.1);
+      color: rgba(237,232,222,.22);
+      border: 1px solid rgba(237,232,222,.08);
       cursor: default;
-      font-size: 12px;
+      font-size: 11px;
+      letter-spacing: .08em;
     }
-
-    .btn-outline:hover { opacity: 1; }
 
     /* ── FOOTER ── */
     .bio-footer {
-      font-size: 11px;
-      letter-spacing: .1em;
+      font-size: 10.5px;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(237,232,222,.2);
+      color: rgba(237,232,222,.18);
       text-align: center;
     }
-
-    /* ── GOLD LINE ── */
-    .gold-rule {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-      flex-shrink: 0;
-    }
-
-    /* disabled card image slightly more muted */
-    .card--disabled .card-visual img {
-      filter: brightness(.55) contrast(1.02) saturate(.4);
-    }
-
-    .card--disabled .card-label { color: rgba(237,232,222,.35); }
-    .card--disabled h2 { color: rgba(237,232,222,.5); }
   </style>
 </head>
 <body>
@@ -287,16 +320,17 @@
     <!-- PROFILE -->
     <section class="profile">
       <div class="profile-photo-wrap">
-        <img src="img/hero-cesar.jpg" alt="César Augusto" class="profile-photo">
+        <img src="img/autoridade-cesar.jpg" alt="César Augusto" class="profile-photo">
       </div>
       <div>
         <p class="profile-handle">@cesaraugustoo_</p>
         <h1 class="profile-name">César Augusto</h1>
       </div>
-      <p class="profile-role">Psicanalista &nbsp;·&nbsp; Casamentos após a traição</p>
+      <p class="profile-role">Psicanalista especialista em reconstrução após a traição</p>
       <p class="profile-bio">
-        60k seguidores. Marido, cristão.<br>
-        Criador do <strong>Reconstrução Masculina</strong><br>e do <strong>Saber Amar</strong> com Thaís Ayumi.
+        Psicanalista cristão, casado. Ajudo homens que traíram a entender o que os levou a isso
+        e a reconstruir o que ainda pode ser salvo.<br>
+        <strong>Mais de 200 homens nesse processo.</strong>
       </p>
     </section>
 
@@ -305,48 +339,58 @@
     <!-- CARDS -->
     <section class="cards">
 
-      <!-- TERAPIA (disabled) -->
+      <!-- TERAPIA -->
       <article class="card card--disabled">
         <div class="card-visual">
-          <img src="img/autoridade-cesar.jpg" alt="Terapia com César" style="object-position:50% 18%;">
+          <img
+            src="img/hero-cesar.jpg"
+            alt="Terapia com César"
+            style="object-position:50% 28%; filter:brightness(.55) contrast(1.02) saturate(.4);">
           <span class="card-label">Atendimento individual</span>
           <div class="card-headline">
             <h2>Terapia com César</h2>
           </div>
         </div>
         <div class="card-body">
-          <p class="card-desc">Sessões online para homens que traíram e querem reconstruir o casamento e o caráter.</p>
-          <span class="btn btn-outline">Agenda fechada — sem vagas</span>
+          <p class="card-desc">Atendimento online, agenda fechada. Se você traiu e quer entender o que está em jogo antes que seja tarde demais.</p>
+          <span class="btn btn-disabled">Agenda fechada — sem vagas</span>
         </div>
       </article>
 
       <!-- RECONSTRUCAO MASCULINA -->
-      <article class="card">
+      <article class="card card--featured">
         <div class="card-visual">
-          <img src="img/hero-casal.jpeg" alt="Reconstrução Masculina" style="object-position:50% 22%;">
+          <img
+            src="img/hero-casal.jpeg"
+            alt="Reconstrução Masculina"
+            style="object-position:50% 18%; filter:brightness(.72) contrast(1.09) saturate(.78);">
           <span class="card-label">Curso online</span>
           <div class="card-headline">
+            <span class="card-badge">+ 200 homens</span>
             <h2>Reconstrução Masculina</h2>
           </div>
         </div>
         <div class="card-body">
-          <p class="card-desc">Para o homem que traiu e foi descoberto. Reconstrua o seu caráter e dê ao casamento uma chance real.</p>
-          <a href="https://reconstrucao.cesaraugustopsi.com.br" class="btn btn-gold">Quero me reconstruir &nbsp;→</a>
+          <p class="card-desc">Você traiu. Foi descoberto. E agora não sabe se o que sente é culpa, medo de perder ela ou vontade real de mudar. Este curso foi feito para esse momento exato.</p>
+          <a href="https://reconstrucao.cesaraugustopsi.com.br" class="btn btn-gold">Quero entender o que aconteceu comigo</a>
         </div>
       </article>
 
       <!-- SABER AMAR -->
       <article class="card">
         <div class="card-visual">
-          <img src="img/casal-hero.jpg" alt="Saber Amar" style="object-position:50% 28%;">
+          <img
+            src="img/casamento.jpeg"
+            alt="Saber Amar"
+            style="object-position:50% 35%; filter:brightness(.74) contrast(1.05) saturate(.72);">
           <span class="card-label">Curso online</span>
           <div class="card-headline">
             <h2>Saber Amar</h2>
           </div>
         </div>
         <div class="card-body">
-          <p class="card-desc">Para a mulher que foi traída. Liberte-se da dependência emocional e reconquiste a sua vida.</p>
-          <a href="https://saberamar.cesaraugustopsi.com.br" class="btn btn-gold">Quero a minha liberdade &nbsp;→</a>
+          <p class="card-desc">Você foi traída e não sabe mais o que é real: o amor que sente, a raiva que carrega ou o medo de ficar. O Saber Amar foi criado para a mulher que quer se entender antes de decidir qualquer coisa.</p>
+          <a href="https://saberamar.cesaraugustopsi.com.br" class="btn btn-gold">Quero me entender de verdade</a>
         </div>
       </article>
 
