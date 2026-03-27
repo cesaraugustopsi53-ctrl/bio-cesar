@@ -6,51 +6,59 @@
   <title>César Augusto — Psicanalista</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --preto:   #0d0d0d;
-      --preto2:  #111111;
-      --preto3:  #171717;
-      --verde:   #1a3a2a;
-      --verde2:  #0f2218;
-      --dourado: #c9a84c;
-      --dourado2:#e8c96a;
-      --branco:  #ffffff;
-      --cinza:   rgba(255,255,255,.55);
+      --bg:    #080e09;
+      --bg2:   #0d160e;
+      --bg3:   #111c12;
+      --amber: #C9A84C;
+      --amber2:#e8c96a;
+      --text:  #e8e0d4;
+      --dim:   rgba(232,224,212,.5);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--preto);
-      color: var(--branco);
-      font-family: "Open Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       min-height: 100dvh;
+      isolation: isolate;
     }
 
-    /* Film grain sutil */
-    body::before {
-      content: '';
+    /* ── GRAIN OVERLAY — Roger Deakins ── */
+    .grain-overlay {
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
       pointer-events: none;
-      z-index: 100;
+      z-index: 1000;
     }
 
+    /* ── VINHETA ── */
+    .vinheta {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 85% 85% at 50% 50%, transparent 50%, rgba(4,8,4,.7) 100%);
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ── PAGE ── */
     .page {
       max-width: 480px;
       margin: 0 auto;
-      padding: 56px 20px 80px;
+      padding: 60px 0 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 40px;
+      gap: 0;
       position: relative;
       z-index: 1;
     }
@@ -60,116 +68,110 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       text-align: center;
+      padding: 0 24px 48px;
+      width: 100%;
     }
 
     .profile-photo-wrap {
-      border: 3px solid var(--dourado);
+      position: relative;
+      width: 116px;
+      height: 116px;
+    }
+
+    .profile-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
       border-radius: 50%;
-      padding: 3px;
-      box-shadow: 0 0 32px rgba(201,168,76,.22);
+      border: 1px solid rgba(201,168,76,.45);
+      box-shadow:
+        0 0 0 4px rgba(201,168,76,.06),
+        0 0 32px rgba(201,168,76,.18);
     }
 
     .profile-photo {
-      width: 130px;
-      height: 130px;
+      width: 116px;
+      height: 116px;
       border-radius: 50%;
       object-fit: cover;
       object-position: 50% 15%;
       display: block;
-      filter: brightness(.9) contrast(1.06) saturate(.85);
-      background: var(--preto2);
+      filter: brightness(.88) contrast(1.07) saturate(.8);
     }
 
     .profile-handle {
-      font-family: "Oswald", sans-serif;
-      font-size: 12px;
-      font-weight: 400;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 500;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--dourado);
+      color: var(--amber);
     }
 
     .profile-name {
-      font-family: "Oswald", sans-serif;
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      line-height: 1.0;
-      color: var(--branco);
-      text-transform: uppercase;
-      margin-top: -2px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: .01em;
+      line-height: .98;
+      color: var(--text);
+      margin-top: -4px;
     }
 
     .profile-role {
-      font-family: "Oswald", sans-serif;
       font-size: 10px;
       font-weight: 400;
-      letter-spacing: .2em;
+      letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.35);
-      padding-top: 10px;
-      border-top: 1px solid rgba(201,168,76,.2);
+      color: rgba(232,224,212,.3);
+      padding-top: 12px;
+      border-top: 1px solid rgba(201,168,76,.15);
       width: 100%;
     }
 
     .profile-bio {
       font-size: 14px;
-      line-height: 1.72;
-      color: var(--cinza);
-      max-width: 310px;
+      line-height: 1.78;
+      color: var(--dim);
+      max-width: 300px;
     }
 
     .profile-bio strong {
-      color: var(--branco);
-      font-weight: 600;
+      color: rgba(232,224,212,.85);
+      font-weight: 500;
     }
 
-    /* ── DIVISOR ── */
-    .linha-dourada {
-      width: 50px;
-      height: 2px;
-      background: var(--dourado);
-      opacity: .6;
+    /* ── DIVISOR ÂMBAR ── */
+    .amber-rule {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber), transparent);
+      margin-bottom: 48px;
     }
 
     /* ── CARDS ── */
     .cards {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 2px;
       width: 100%;
     }
 
     .card {
-      background: var(--preto2);
-      border: 1px solid rgba(255,255,255,.06);
-      border-bottom: 3px solid transparent;
+      position: relative;
       overflow: hidden;
-      transition: transform .2s, border-color .2s;
+      background: var(--bg2);
     }
 
-    .card:not(.card--disabled):hover {
-      transform: translateY(-2px);
-      border-bottom-color: var(--dourado);
-    }
-
-    .card--featured {
-      border-bottom: 3px solid var(--dourado);
-    }
-
-    .card--disabled {
-      opacity: .55;
-    }
-
-    /* ── IMAGEM ── */
+    /* ── IMAGEM CINEMÁTICA 16:9 ── */
     .card-visual {
       position: relative;
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 16/9;
       overflow: hidden;
-      background: var(--preto3);
     }
 
     .card-visual img {
@@ -177,100 +179,103 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      filter: brightness(.75) contrast(1.1) saturate(.7);
       transform: scale(1.01);
-      transition: transform .4s ease;
+      transition: transform .6s ease, filter .6s ease;
     }
 
-    .card:not(.card--disabled):hover .card-visual img {
-      transform: scale(1.04);
+    .card:hover .card-visual img {
+      transform: scale(1.05);
+      filter: brightness(.82) contrast(1.08) saturate(.75);
     }
 
-    /* Gradiente topo escuro */
+    /* Gradiente cinemático — escurece topo e funde com corpo */
     .card-visual::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 100px;
-      background: linear-gradient(to bottom, rgba(13,13,13,.9), transparent);
+      height: 50%;
+      background: linear-gradient(to bottom, rgba(8,14,9,.8), transparent);
       z-index: 2;
       pointer-events: none;
     }
 
-    /* Gradiente rodapé — mergulha no card-body */
     .card-visual::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      height: 130px;
-      background: linear-gradient(to top, var(--preto2) 0%, rgba(17,17,17,.75) 50%, transparent 100%);
+      height: 65%;
+      background: linear-gradient(to top, var(--bg2) 0%, rgba(13,22,14,.85) 40%, transparent 100%);
       z-index: 2;
       pointer-events: none;
     }
 
+    /* Label no topo */
     .card-label {
       position: absolute;
       top: 14px;
-      left: 16px;
-      font-family: "Oswald", sans-serif;
-      font-size: 10px;
+      left: 18px;
+      font-size: 9px;
       font-weight: 500;
-      letter-spacing: .22em;
+      letter-spacing: .24em;
       text-transform: uppercase;
-      color: var(--dourado);
+      color: var(--amber);
       z-index: 3;
     }
 
+    /* Título sobre a imagem */
     .card-headline {
       position: absolute;
       bottom: 0;
       left: 0; right: 0;
-      padding: 0 16px 18px;
+      padding: 0 18px 20px;
       z-index: 3;
     }
 
     .card-headline h2 {
-      font-family: "Oswald", sans-serif;
-      font-size: 28px;
-      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 400;
+      font-style: italic;
       line-height: 1.1;
-      color: var(--branco);
-      letter-spacing: .03em;
-      text-transform: uppercase;
+      color: var(--text);
+      letter-spacing: .01em;
     }
 
     .card-badge {
       display: block;
-      font-family: "Oswald", sans-serif;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .18em;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--dourado);
-      margin-bottom: 4px;
+      color: var(--amber);
+      margin-bottom: 5px;
+      opacity: .85;
     }
 
     /* ── CARD BODY ── */
     .card-body {
-      padding: 14px 16px 20px;
-      background: var(--preto2);
+      padding: 18px 18px 22px;
+      background: var(--bg2);
+      border-top: 1px solid rgba(201,168,76,.07);
     }
 
     .card-desc {
       font-size: 13.5px;
-      line-height: 1.68;
-      color: var(--cinza);
-      margin-bottom: 16px;
+      line-height: 1.72;
+      color: var(--dim);
+      margin-bottom: 18px;
     }
 
-    /* ── BOTOES ── */
+    /* ── BOTÕES ── */
     .btn {
       display: block;
       width: 100%;
       padding: 14px 20px;
-      font-family: "Oswald", sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: .12em;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .1em;
       text-align: center;
       text-decoration: none;
       text-transform: uppercase;
@@ -279,33 +284,52 @@
       transition: background .15s;
     }
 
-    .btn-gold {
-      background: var(--dourado);
-      color: var(--verde2);
+    .btn-amber {
+      background: var(--amber);
+      color: #06100a;
+      font-weight: 600;
     }
 
-    .btn-gold:hover { background: var(--dourado2); }
+    .btn-amber:hover { background: var(--amber2); }
 
-    .btn-disabled {
+    .btn-muted {
       background: transparent;
-      color: rgba(255,255,255,.2);
-      border: 1px solid rgba(255,255,255,.08);
-      font-size: 12px;
+      color: rgba(232,224,212,.2);
+      border: 1px solid rgba(232,224,212,.08);
       cursor: default;
+      font-size: 11px;
+    }
+
+    /* disabled */
+    .card--disabled .card-visual img {
+      filter: brightness(.45) contrast(1.05) saturate(.3);
+    }
+
+    .card--disabled .card-label { color: rgba(232,224,212,.25); }
+    .card--disabled h2 { color: rgba(232,224,212,.35); }
+
+    /* destaque */
+    .card--featured {
+      border-left: 2px solid rgba(201,168,76,.35);
+      border-right: 2px solid rgba(201,168,76,.35);
     }
 
     /* ── FOOTER ── */
     .bio-footer {
-      font-family: "Oswald", sans-serif;
+      padding-top: 48px;
       font-size: 10px;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.15);
+      color: rgba(232,224,212,.14);
       text-align: center;
     }
   </style>
 </head>
 <body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div class="vinheta" aria-hidden="true"></div>
+
   <main class="page">
 
     <!-- PROFILE -->
@@ -323,20 +347,19 @@
         e a reconstruir o que ainda pode ser salvo.<br>
         <strong>Mais de 200 homens nesse processo.</strong>
       </p>
+      <div class="amber-rule"></div>
     </section>
-
-    <div class="linha-dourada"></div>
 
     <!-- CARDS -->
     <section class="cards">
 
-      <!-- TERAPIA -->
+      <!-- TERAPIA — homem só, 3AM, aliança na mão -->
       <article class="card card--disabled">
         <div class="card-visual">
           <img
-            src="img/IMG_3935.JPEG"
+            src="img/dor-noite.jpg"
             alt="Terapia com César"
-            style="object-position:50% 15%; filter:brightness(.5) contrast(1.02) saturate(.35);">
+            style="object-position:50% 40%;">
           <span class="card-label">Atendimento individual</span>
           <div class="card-headline">
             <h2>Terapia com César</h2>
@@ -344,17 +367,17 @@
         </div>
         <div class="card-body">
           <p class="card-desc">Atendimento online, agenda fechada. Se você traiu e quer entender o que está em jogo antes que seja tarde demais.</p>
-          <span class="btn btn-disabled">Agenda fechada — sem vagas</span>
+          <span class="btn btn-muted">Agenda fechada — sem vagas</span>
         </div>
       </article>
 
-      <!-- RECONSTRUCAO MASCULINA -->
+      <!-- RM — homem na janela ao amanhecer, aliança na luz -->
       <article class="card card--featured">
         <div class="card-visual">
           <img
-            src="img/casal-cesar.jpg"
+            src="img/cta-final-bg.jpg"
             alt="Reconstrução Masculina"
-            style="object-position:50% 22%; filter:brightness(.72) contrast(1.09) saturate(.78);">
+            style="object-position:35% 50%;">
           <span class="card-label">Curso online</span>
           <div class="card-headline">
             <span class="card-badge">+ 200 homens</span>
@@ -363,17 +386,17 @@
         </div>
         <div class="card-body">
           <p class="card-desc">Você traiu. Foi descoberto. E agora não sabe se o que sente é culpa, medo de perder ela ou vontade real de mudar. Este curso foi feito para esse momento exato.</p>
-          <a href="https://reconstrucao.cesaraugustopsi.com.br" class="btn btn-gold">Quero entender o que aconteceu comigo</a>
+          <a href="https://reconstrucao.cesaraugustopsi.com.br" class="btn btn-amber">Quero entender o que aconteceu comigo</a>
         </div>
       </article>
 
-      <!-- SABER AMAR -->
+      <!-- SABER AMAR — feixe de luz âmbar, esperança no escuro -->
       <article class="card">
         <div class="card-visual">
           <img
-            src="img/thais-retrato-2.jpg"
+            src="img/hero-bg.jpg"
             alt="Saber Amar"
-            style="object-position:50% 20%; filter:brightness(.74) contrast(1.05) saturate(.72);">
+            style="object-position:60% 50%;">
           <span class="card-label">Curso online</span>
           <div class="card-headline">
             <h2>Saber Amar</h2>
@@ -381,7 +404,7 @@
         </div>
         <div class="card-body">
           <p class="card-desc">Você foi traída e não sabe mais o que é real: o amor que sente, a raiva que carrega ou o medo de ficar. O Saber Amar foi criado para a mulher que quer se entender antes de decidir qualquer coisa.</p>
-          <a href="https://saberamar.cesaraugustopsi.com.br" class="btn btn-gold">Quero me entender de verdade</a>
+          <a href="https://saberamar.cesaraugustopsi.com.br" class="btn btn-amber">Quero me entender de verdade</a>
         </div>
       </article>
 
