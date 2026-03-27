@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>César Augusto — Psicanalista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:  #0d0408;
+      --dark2: #130509;
+      --gold:  #C9A84C;
+      --gold2: #D4AF6E;
+      --creme: #F5EDE3;
+      --light: #FAF6F2;
+    }
+
+    html, body {
+      background: var(--dark);
+      color: var(--creme);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      min-height: 100dvh;
+    }
+
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    /* ── PROFILE ── */
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .profile-photo {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 50% 15%;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 0 4px rgba(201,168,76,.15);
+    }
+
+    .profile-handle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .profile-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--creme);
+      line-height: 1.1;
+      margin-top: -4px;
+    }
+
+    .profile-bio {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(245,237,227,.72);
+      max-width: 320px;
+    }
+
+    .profile-bio strong {
+      color: var(--creme);
+      font-weight: 500;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      flex-shrink: 0;
+    }
+
+    /* ── CARDS ── */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--dark2);
+      border: 1px solid rgba(201,168,76,.18);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      object-position: 50% 30%;
+      display: block;
+      filter: brightness(.82) saturate(.85);
+    }
+
+    .card-body {
+      padding: 20px 20px 22px;
+    }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--creme);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: rgba(245,237,227,.65);
+      margin-bottom: 18px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      letter-spacing: .04em;
+      cursor: pointer;
+      border: none;
+      transition: opacity .2s;
+    }
+
+    .btn:hover { opacity: .88; }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #0d0408;
+    }
+
+    .btn-disabled {
+      background: rgba(245,237,227,.08);
+      color: rgba(245,237,227,.35);
+      cursor: default;
+      border: 1px solid rgba(245,237,227,.1);
+    }
+
+    .btn-disabled:hover { opacity: 1; }
+
+    /* ── FOOTER ── */
+    footer {
+      font-size: 12px;
+      color: rgba(245,237,227,.3);
+      text-align: center;
+      letter-spacing: .04em;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- PROFILE -->
+    <section class="profile">
+      <img src="img/hero-cesar.jpg" alt="César Augusto" class="profile-photo">
+      <div>
+        <p class="profile-handle">@cesaraugustoo_</p>
+        <h1 class="profile-name">César Augusto</h1>
+      </div>
+      <p class="profile-bio">
+        Psicanalista especialista em <strong>casamentos após a traição.</strong><br>
+        Marido, cristão. 60k seguidores. Criador do <strong>Reconstrução Masculina</strong> e do <strong>Saber Amar.</strong>
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CARDS -->
+    <section class="cards">
+
+      <!-- TERAPIA -->
+      <article class="card">
+        <img src="img/autoridade-cesar.jpg" alt="Terapia" class="card-img" style="object-position:50% 20%;">
+        <div class="card-body">
+          <p class="card-label">Atendimento individual</p>
+          <h2 class="card-title">Terapia com César</h2>
+          <p class="card-desc">Sessões online para homens que traíram e querem reconstruir o casamento e o caráter.</p>
+          <span class="btn btn-disabled">Agenda fechada — sem vagas</span>
+        </div>
+      </article>
+
+      <!-- RECONSTRUCAO MASCULINA -->
+      <article class="card">
+        <img src="img/casal-cesar.jpg" alt="Reconstrução Masculina" class="card-img" style="object-position:50% 35%;">
+        <div class="card-body">
+          <p class="card-label">Curso online</p>
+          <h2 class="card-title">Reconstrução Masculina</h2>
+          <p class="card-desc">Para o homem que traiu e foi descoberto. Reconstrua o seu caráter e dê ao casamento uma chance real.</p>
+          <a href="https://reconstrucao.cesaraugustopsi.com.br" class="btn btn-gold">Quero me reconstruir &nbsp;→</a>
+        </div>
+      </article>
+
+      <!-- SABER AMAR -->
+      <article class="card">
+        <img src="img/casal-hero.jpg" alt="Saber Amar" class="card-img" style="object-position:50% 25%;">
+        <div class="card-body">
+          <p class="card-label">Curso online</p>
+          <h2 class="card-title">Saber Amar</h2>
+          <p class="card-desc">Para a mulher que foi traída e quer se libertar da dependência emocional e reconquistar a sua vida.</p>
+          <a href="https://saberamar.cesaraugustopsi.com.br" class="btn btn-gold">Quero a minha liberdade &nbsp;→</a>
+        </div>
+      </article>
+
+    </section>
+
+    <footer>cesaraugustopsi.com.br</footer>
+
+  </main>
+</body>
+</html>
