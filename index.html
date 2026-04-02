@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>César Augusto — Psicanalista</title>
-  <meta name="description" content="Psicanalista especialista em casamentos em crise. Reconstrução Masculina, Restauração do Casamento e Vença a Pornografia.">
   <meta name="robots" content="index,follow">
 
   <!-- Meta Pixel -->
@@ -25,415 +24,199 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg:    #020a04;
-      --bg2:   #04110a;
-      --bg3:   #061610;
-      --gold:  #C9A84C;
-      --gold2: #e8c96a;
-      --text:  #EDE8DE;
-      --dim:   rgba(237,232,222,.65);
-    }
-
-    html { scroll-behavior: smooth; }
-
     body {
-      background:
-        radial-gradient(ellipse 160% 55% at 50% 0%, #061a0e 0%, #020a04 65%),
-        #020a04;
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-weight: 400;
-      min-height: 100dvh;
+      font-family: 'DM Sans', sans-serif;
+      background: #F5F0E8;
+      min-height: 100vh;
+      padding: 40px 20px 60px;
+      color: #1a1a1a;
       -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-      z-index: 100;
-    }
-
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background: linear-gradient(180deg,
-        rgba(201,168,76,.04) 0%,
-        transparent 25%,
-        transparent 75%,
-        rgba(201,168,76,.02) 100%);
-      pointer-events: none;
-      z-index: 99;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes expandLine {
-      from { transform: scaleX(0); }
-      to   { transform: scaleX(1); }
-    }
-
     .page {
-      max-width: 480px;
+      max-width: 420px;
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ── PROFILE ── */
-    .profile {
-      padding: 56px 24px 48px;
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      animation: fadeUp .6s ease both;
+      gap: 14px;
     }
 
-    .profile-top {
-      display: flex;
-      align-items: center;
-      gap: 20px;
+    /* PERFIL */
+    .perfil {
+      text-align: center;
+      padding-bottom: 8px;
     }
-
-    .profile-photo {
-      width: 68px;
-      height: 68px;
+    .perfil-foto {
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       object-fit: cover;
       object-position: 50% 12%;
-      filter: grayscale(15%) brightness(.87) contrast(1.07);
-      border: 1px solid rgba(201,168,76,.4);
-      flex-shrink: 0;
+      border: 3px solid #C9A84C;
+      margin-bottom: 10px;
     }
-
-    .profile-handle {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 4px;
+    .perfil-nome {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1B3A2D;
     }
-
-    .profile-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      line-height: .88;
-      color: var(--text);
-      letter-spacing: .04em;
-      text-shadow: 0 1px 24px rgba(15,32,24,.8);
-    }
-
-    .profile-bio {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.68;
-      color: var(--dim);
-      border-left: 2px solid rgba(201,168,76,.28);
-      padding-left: 14px;
-    }
-
-    .profile-bio strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, rgba(201,168,76,.3), transparent);
-      margin: 0 24px 28px;
-      transform-origin: left;
-      animation: expandLine .8s .08s ease both;
-    }
-
-    /* ── CARDS ── */
-    .cards {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 0 0 32px;
-    }
-
-    .card {
-      display: flex;
-      align-items: stretch;
-      background: var(--bg2);
-      min-height: 200px;
-      border: 1px solid transparent;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-      transition:
-        border-color .25s ease,
-        background .25s ease,
-        transform .2s ease,
-        box-shadow .25s ease;
-    }
-
-    .card:nth-child(1) { animation: fadeUp .6s .10s ease both; }
-    .card:nth-child(2) { animation: fadeUp .6s .20s ease both; }
-    .card:nth-child(3) { animation: fadeUp .6s .30s ease both; }
-
-    .card:hover {
-      border-color: rgba(201,168,76,.18);
-      background: var(--bg3);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,0,0,.35);
-    }
-
-    /* ── IMAGEM ── */
-    .card-img {
-      width: 148px;
-      flex-shrink: 0;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: grayscale(20%) brightness(.75) contrast(1.08);
-      transition:
-        transform .6s cubic-bezier(.25,.46,.45,.94),
-        filter .4s ease;
-    }
-
-    .card:hover .card-img img {
-      transform: scale(1.06);
-      filter: grayscale(10%) brightness(.82) contrast(1.1);
-    }
-
-    .card-img::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to right, transparent 55%, var(--bg2) 100%);
-      pointer-events: none;
-      transition: background .25s ease;
-    }
-
-    .card:hover .card-img::after {
-      background: linear-gradient(to right, transparent 55%, var(--bg3) 100%);
-    }
-
-    /* ── CONTEÚDO ── */
-    .card-content {
-      flex: 1;
-      padding: 22px 20px 22px 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .card-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .card-promise {
-      font-size: 18px;
-      font-weight: 600;
-      line-height: 1.25;
-      color: var(--text);
-      letter-spacing: -.02em;
-      flex: 1;
-    }
-
-    .card-promise span {
-      display: block;
-      margin-top: 8px;
-      font-weight: 400;
-      color: var(--dim);
-      font-size: 13px;
-      letter-spacing: -.01em;
+    .perfil-bio {
+      font-size: .85rem;
+      color: #666;
+      margin-top: 4px;
       line-height: 1.5;
     }
 
-    /* ── PREÇO ── */
-    .card-preco {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-      margin-top: 2px;
-    }
-
-    .card-preco-valor {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-      letter-spacing: -.01em;
-    }
-
-    .card-preco-prefix {
-      font-size: 11px;
-      font-weight: 500;
-      color: rgba(201,168,76,.7);
-    }
-
-    .card-preco-avista {
-      font-size: 10px;
-      color: rgba(237,232,222,.3);
-      margin-top: 2px;
-      letter-spacing: .04em;
-    }
-
-    /* ── BOTÕES ── */
-    .btn {
-      display: block;
-      padding: 11px 16px;
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      text-align: center;
+    /* CARD */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 20px;
       text-decoration: none;
-      border-radius: 2px;
-      transition:
-        background .15s ease,
-        box-shadow .2s ease,
-        transform .1s ease;
+      color: inherit;
+      display: block;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+      border: 2px solid transparent;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .card:active {
+      border-color: #C9A84C;
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
     }
 
-    .btn-gold {
-      background: var(--gold);
-      color: #060e08;
-    }
-
-    .btn-gold:hover {
-      background: var(--gold2);
-      box-shadow: 0 4px 16px rgba(201,168,76,.3);
-      transform: translateY(-1px);
-    }
-
-    .btn-gold:active {
-      transform: translateY(0);
-      box-shadow: none;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 8px 24px 48px;
-      text-align: center;
-      animation: fadeUp .6s .4s ease both;
-    }
-
-    footer p {
-      font-size: 10px;
-      letter-spacing: .18em;
+    .card-tipo {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: rgba(237,232,222,.14);
+      color: #C9A84C;
+      margin-bottom: 6px;
+    }
+    .card-titulo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #1B3A2D;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .card-desc {
+      font-size: .88rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .card-preco {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #1B3A2D;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+    .card-preco small {
+      font-size: .9rem;
+      font-weight: 500;
+      color: #888;
+    }
+    .card-avista {
+      font-size: .75rem;
+      color: #aaa;
+      margin-bottom: 14px;
+    }
+    .card-btn {
+      display: block;
+      width: 100%;
+      background: #C9A84C;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      padding: 14px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    /* DESTAQUE — card do meio */
+    .card.destaque {
+      background: #1B3A2D;
+    }
+    .card.destaque .card-tipo { color: #C9A84C; }
+    .card.destaque .card-titulo { color: #fff; }
+    .card.destaque .card-desc { color: rgba(255,255,255,.65); }
+    .card.destaque .card-preco { color: #C9A84C; }
+    .card.destaque .card-preco small { color: rgba(201,168,76,.7); }
+    .card.destaque .card-avista { color: rgba(255,255,255,.35); }
+    .card.destaque .card-btn { background: #C9A84C; color: #fff; }
+
+    .tag-incluso {
+      display: inline-block;
+      background: rgba(201,168,76,.15);
+      border: 1px solid rgba(201,168,76,.4);
+      border-radius: 50px;
+      padding: 3px 10px;
+      font-size: .72rem;
+      font-weight: 600;
+      color: #C9A84C;
+      margin-bottom: 14px;
+    }
+
+    .rodape {
+      text-align: center;
+      margin-top: 4px;
+    }
+    .rodape p {
+      font-size: .72rem;
+      color: #bbb;
+      letter-spacing: .5px;
     }
   </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- PROFILE -->
-  <header class="profile">
-    <div class="profile-top">
-      <img src="img/autor.jpeg" alt="César Augusto" class="profile-photo">
-      <div>
-        <p class="profile-handle">@cesaraugustoo__</p>
-        <h1 class="profile-name">César<br>Augusto</h1>
-      </div>
-    </div>
-    <p class="profile-bio">
-      Psicanalista especialista em traição e vício em pornografia.<br>
-      <strong>Ajudo homens a se reconstruírem e restaurar o casamento.</strong>
-    </p>
-  </header>
+  <!-- PERFIL -->
+  <div class="perfil">
+    <img src="img/autor.jpeg" alt="César Augusto" class="perfil-foto">
+    <p class="perfil-nome">César Augusto</p>
+    <p class="perfil-bio">Psicanalista · @cesaraugustoo__</p>
+  </div>
 
-  <div class="divider"></div>
+  <!-- RECONSTRUÇÃO MASCULINA -->
+  <a href="https://cesaraugustopsi.com.br" class="card" onclick="fbq('track','ViewContent',{content_name:'RM-bio'})">
+    <p class="card-tipo">Curso online</p>
+    <h2 class="card-titulo">Reconstrução Masculina</h2>
+    <p class="card-desc">Se você traiu ou feriu sua esposa — esse é o caminho para se reconstruir como homem, restaurar seu casamento e vencer a pornografia.</p>
+    <p class="card-preco"><small>12x de </small>R$41,06</p>
+    <p class="card-avista">ou R$397 à vista</p>
+    <span class="card-btn">Quero me reconstruir →</span>
+  </a>
 
-  <!-- CARDS -->
-  <section class="cards">
+  <!-- RESTAURAÇÃO DO CASAMENTO -->
+  <a href="https://reconstrucao.cesaraugustopsi.com.br" class="card destaque" onclick="fbq('track','ViewContent',{content_name:'RC-bio'})">
+    <p class="card-tipo">Curso online · Para o casal</p>
+    <h2 class="card-titulo">Restauração do Casamento</h2>
+    <p class="card-desc">Para o casal que quer se reconstruir — módulo para o homem, para a mulher e para o relacionamento.</p>
+    <span class="tag-incluso">✓ Reconstrução Masculina incluso</span>
+    <p class="card-preco"><small>12x de </small>R$103,13</p>
+    <p class="card-avista">ou R$997 à vista</p>
+    <span class="card-btn">Quero restaurar meu casamento →</span>
+  </a>
 
-    <!-- RECONSTRUÇÃO MASCULINA -->
-    <a href="https://cesaraugustopsi.com.br" class="card" onclick="fbq('track','ViewContent',{content_name:'RM-bio'})">
-      <div class="card-img">
-        <img src="img/hero-casal.jpeg" alt="Reconstrução Masculina" style="object-position:50% 22%;">
-      </div>
-      <div class="card-content">
-        <p class="card-label">Curso online</p>
-        <p class="card-promise">
-          Reconstrução Masculina
-          <span>Se você traiu ou feriu sua esposa — esse é o caminho para se reconstruir como homem, restaurar seu casamento e vencer a pornografia.</span>
-        </p>
-        <div>
-          <div class="card-preco">
-            <span class="card-preco-prefix">12x de</span>
-            <span class="card-preco-valor">R$41,06</span>
-          </div>
-          <p class="card-preco-avista">ou R$397 à vista</p>
-        </div>
-        <span class="btn btn-gold">Quero me reconstruir →</span>
-      </div>
-    </a>
+  <!-- VENÇA A PORNOGRAFIA -->
+  <a href="https://vicio.cesaraugustopsi.com.br" class="card" onclick="fbq('track','ViewContent',{content_name:'VV-bio'})">
+    <p class="card-tipo">Curso online</p>
+    <h2 class="card-titulo">Vença a Pornografia</h2>
+    <p class="card-desc">Vença de vez o vício e nunca mais tenha uma recaída.</p>
+    <p class="card-preco">R$37</p>
+    <p class="card-avista">acesso imediato</p>
+    <span class="card-btn">Quero vencer →</span>
+  </a>
 
-    <!-- RESTAURAÇÃO DO CASAMENTO -->
-    <a href="https://reconstrucao.cesaraugustopsi.com.br" class="card" onclick="fbq('track','ViewContent',{content_name:'RC-bio'})">
-      <div class="card-img">
-        <img src="img/pedido-casamento.jpg" alt="Restauração do Casamento" style="object-position:50% 30%;">
-      </div>
-      <div class="card-content">
-        <p class="card-label">Curso online · Para o casal</p>
-        <p class="card-promise">
-          Restauração do Casamento
-          <span>Para o casal que quer se reconstruir — módulo para o homem, para a mulher e para o relacionamento. Reconstrução Masculina incluso.</span>
-        </p>
-        <div>
-          <div class="card-preco">
-            <span class="card-preco-prefix">12x de</span>
-            <span class="card-preco-valor">R$103,13</span>
-          </div>
-          <p class="card-preco-avista">ou R$997 à vista</p>
-        </div>
-        <span class="btn btn-gold">Quero restaurar meu casamento →</span>
-      </div>
-    </a>
-
-    <!-- VENÇA A PORNOGRAFIA -->
-    <a href="https://vicio.cesaraugustopsi.com.br" class="card" onclick="fbq('track','ViewContent',{content_name:'VV-bio'})">
-      <div class="card-img">
-        <img src="img/dor-noite.jpg" alt="Vença a Pornografia" style="object-position:50% 50%;">
-      </div>
-      <div class="card-content">
-        <p class="card-label">Curso online</p>
-        <p class="card-promise">
-          Vença a Pornografia
-          <span>Vença de vez o vício e nunca mais tenha uma recaída.</span>
-        </p>
-        <div>
-          <div class="card-preco">
-            <span class="card-preco-valor">R$37</span>
-          </div>
-          <p class="card-preco-avista">acesso imediato</p>
-        </div>
-        <span class="btn btn-gold">Quero vencer →</span>
-      </div>
-    </a>
-
-  </section>
-
-  <footer><p>cesaraugustopsi.com.br</p></footer>
+  <div class="rodape"><p>cesaraugustopsi.com.br</p></div>
 
 </div>
 </body>
