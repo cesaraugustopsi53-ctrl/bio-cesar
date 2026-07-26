@@ -174,6 +174,37 @@
       letter-spacing: .5px;
     }
 
+    .lista-partes {
+      list-style: none;
+      counter-reset: parte;
+      margin-bottom: 16px;
+    }
+    .lista-partes li {
+      counter-increment: parte;
+      font-size: .85rem;
+      color: #555;
+      padding: 7px 0 7px 28px;
+      position: relative;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .lista-partes li:first-child { border-top: none; }
+    .lista-partes li::before {
+      content: counter(parte);
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(201,168,76,.15);
+      color: #C9A84C;
+      font-size: .7rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     /* DEPOIMENTOS */
     .dep-titulo {
       text-align: center;
@@ -214,23 +245,33 @@
 
   <!-- RECONSTRUÇÃO MASCULINA — DESTAQUE -->
   <a href="https://cesaraugustopsi.com.br" class="card destaque" onclick="fbq('track','ViewContent',{content_name:'RM-bio'})">
-    <p class="card-tipo">⭐ Curso online · 264 alunos</p>
+    <p class="card-tipo">⭐ Curso online · para homens</p>
     <h2 class="card-titulo">Reconstrução Masculina</h2>
-    <p class="card-desc">Se você traiu ou feriu sua esposa, esse é o caminho para se reconstruir como homem, restaurar seu casamento e vencer a pornografia.</p>
-    <p class="card-preco"><small>12x de </small>R$41,06</p>
-    <p class="card-avista">ou R$397 à vista</p>
+    <p class="card-desc">Para o homem que traiu mas se arrependeu e está disposto a pagar o preço de reconstruir a si mesmo, restaurar a sua família e vencer a pornografia.</p>
     <span class="card-btn">Quero me reconstruir →</span>
   </a>
 
-  <!-- RECONSTRUÇÃO DO CASAL -->
-  <a href="https://reconstrucao.cesaraugustopsi.com.br" class="card" onclick="fbq('track','ViewContent',{content_name:'RC-bio'})">
-    <p class="card-tipo">Para os dois</p>
-    <h2 class="card-titulo">Reconstrução do Casal</h2>
-    <p class="card-desc">O programa completo: Reconstrução Masculina + Reconstrução Feminina + aulas complementares exclusivas sobre relacionamento. Para casais que querem reconstruir juntos.</p>
-    <span class="tag-incluso">✓ RM + RF + aulas exclusivas inclusos</span>
-    <p class="card-preco"><small>12x de </small>R$82,43</p>
-    <p class="card-avista">ou R$797 à vista</p>
-    <span class="card-btn">Acessar o programa →</span>
+  <!-- RECONSTRUÇÃO FEMININA -->
+  <a href="https://mulher.cesaraugustopsi.com.br" class="card" onclick="fbq('track','ViewContent',{content_name:'RF-bio'})">
+    <p class="card-tipo">Curso online · para mulheres</p>
+    <h2 class="card-titulo">Reconstrução Feminina</h2>
+    <p class="card-desc">Para a mulher traída que quer se curar e reconstruir sua autoestima e autoconfiança.</p>
+    <span class="card-btn">Quero minha reconstrução →</span>
+  </a>
+
+  <!-- EBOOK DEPOIS DA TRAIÇÃO -->
+  <a href="https://cesaraugustopsi.com.br/ebook/" class="card" onclick="fbq('track','ViewContent',{content_name:'ebook-bio'})">
+    <p class="card-tipo">E-book · 5 partes</p>
+    <h2 class="card-titulo">Depois da Traição</h2>
+    <p class="card-desc">Um guia prático e acessível para reconstruir depois da traição, em 5 partes.</p>
+    <ol class="lista-partes">
+      <li>A raiz: por que você traiu</li>
+      <li>A reconstrução do homem</li>
+      <li>A guerra contra a pornografia</li>
+      <li>A restauração do casamento</li>
+      <li>A prova real: você está curado?</li>
+    </ol>
+    <span class="card-btn">Quero o ebook →</span>
   </a>
 
   <!-- DEPOIMENTOS -->
